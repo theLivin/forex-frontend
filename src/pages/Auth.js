@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { googleLogout } from "@react-oauth/google";
 import axios from "axios";
 import "./Auth.css";
 import { GoogleLogin } from "@react-oauth/google";
 import utils from "../utilities";
+import routes from "../routes";
+import { Navigate } from "react-router-dom";
 
-const Auth = () => {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    setUser(() => ({ ...JSON.parse(localStorage.getItem("user")) }));
-  }, []);
-
-  const logOut = () => {
-    googleLogout();
-    localStorage.clear();
-    setUser(null);
-  };
-
+const Auth = ({ isAuthenticated }) => {
   const handleSuccess = (response) => {
     const { credential } = response;
     axios
@@ -28,7 +17,7 @@ const Auth = () => {
         const user = res.data.data;
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("credential", credential);
-        setUser(user);
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -37,7 +26,7 @@ const Auth = () => {
     console.log(error);
   };
 
-  return (
+  return !isAuthenticated ? (
     <div className="Auth">
       <header className="Auth-header">
         <h1 className="brand">Forex</h1>
@@ -48,6 +37,8 @@ const Auth = () => {
         </div>
       </header>
     </div>
+  ) : (
+    <Navigate to={routes.HOME} replace />
   );
 };
 
