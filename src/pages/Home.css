@@ -1,0 +1,62 @@
+.Home {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.Home__topBar {
+  border-bottom: 1px solid #e7e7e7;
+  padding: 24px 16px;
+  height: 20px;
+}
+
+.Home__topBar .brand {
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+  color: initial;
+}
+
+.Home__main {
+  display: grid;
+  grid-template-columns: 0.3fr auto;
+  height: 100%;
+  height: calc(100vh - 75px);
+}
+
+.Home__main > * {
+  padding: 30px;
+}
+
+.Home__main .sideBar {
+  height: 100%;
+  border-right: 1px solid #e7e7e7;
+  padding-top: 34px;
+}
+
+.Home__main .content {
+  height: fit-content;
+}
+
+.Home__link {
+  font-size: 20px;
+  text-decoration: none;
+  color: initial;
+}
+
+.Home__link i {
+  margin-right: 5px;
+}
+
+.Home__link:hover {
+  text-decoration: underline;
+}
+
+.Home__main .sideBar li {
+  list-style-type: none;
+  margin: 0;
+  padding: 4px;
+}
+
+.Home__link.active {
+  text-decoration: underline;
+}
