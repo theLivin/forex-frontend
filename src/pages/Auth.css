@@ -1,16 +1,22 @@
 .Auth {
-  text-align: center;
-}
-
-.Auth-header {
   min-height: 100vh;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
 
-.Auth-link {
-  color: #61dafb;
+.Auth-header {
+  border: 2px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 80px;
+}
+
+.Auth-header > * {
+  margin: 10px 0;
+}
+
+.GoogleLogin {
+  margin-top: 30px;
 }
