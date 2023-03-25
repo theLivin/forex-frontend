@@ -12,13 +12,13 @@ const Home = () => {
     {
       name: "Requests",
       path: routes.REQUESTS,
-      icon: "fa-solid fa-money-bill-transfer",
+      icon: "fa-solid fa-scale-balanced",
     },
     { name: "Wallet", path: routes.WALLET, icon: "fa-solid fa-wallet" },
     {
       name: "Bank Accouts",
       path: routes.BANK_ACCOUNTS,
-      icon: "fa-solid fa-vault",
+      icon: "fa-solid fa-building-columns",
     },
   ];
 
