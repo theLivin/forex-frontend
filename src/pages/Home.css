@@ -29,14 +29,17 @@
   height: 100%;
   border-right: 1px solid #e7e7e7;
   padding-top: 34px;
+  padding-left: 120px;
 }
 
 .Home__main .content {
   height: fit-content;
+  max-height: calc(100% - 75px);
+  overflow-y: auto;
 }
 
 .Home__link {
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
   color: initial;
 }

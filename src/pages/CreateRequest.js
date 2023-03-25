@@ -32,7 +32,6 @@ const CreateRequest = () => {
     exchangeId: "",
     amount: 0,
     bankAccountId: "",
-
     walletId: "",
     traderId: "",
     sourceCurrency: "",
@@ -386,19 +385,6 @@ const CreateRequest = () => {
       </div>
     );
 
-  const Stepper = () => {
-    switch (step) {
-      case 0:
-        return createRequest;
-      case 1:
-        return checkoutStep;
-      case 2:
-        return <Message status={response.status} text={response.message} />;
-      default:
-        return "This page isn't working";
-    }
-  };
-
   return (
     <Wrapper
       header={{
@@ -406,7 +392,15 @@ const CreateRequest = () => {
         title: "Create Request",
       }}
     >
-      {<Stepper />}
+      {step == 0 ? (
+        createRequest
+      ) : step == 1 ? (
+        checkoutStep
+      ) : step == 2 ? (
+        <Message status={response.status} text={response.message} />
+      ) : (
+        "This page isn't working"
+      )}
     </Wrapper>
   );
 };
