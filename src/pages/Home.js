@@ -67,7 +67,7 @@ const Home = () => {
                       }`,
                       marginRight: "8px",
                     }}
-                  ></i>{" "}
+                  ></i>
                   {link.name}
                 </Link>
               </li>

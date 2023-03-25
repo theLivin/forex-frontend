@@ -120,15 +120,15 @@ const CreateRequest = () => {
   };
 
   const handleChange = (event) => {
+    const { name, value } = event.target;
+
     setNewRequest((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value,
+      [name]: value,
     }));
 
-    if (event.target.name === "bankAccountId") {
-      const found = accounts.filter(
-        (account) => account.id == event.target.value
-      );
+    if (name === "bankAccountId") {
+      const found = accounts.filter((account) => account.id == value);
       setSelectedAccount({ ...found[0] });
     }
   };
@@ -151,7 +151,6 @@ const CreateRequest = () => {
 
     if (newRequest.exchangeId.length === 0 || newRequest.amount === 0) return;
 
-    console.log(selectedAccount);
     setNewRequest((prev) => ({
       ...prev,
       walletId: wallet.id,
@@ -192,13 +191,29 @@ const CreateRequest = () => {
 
   const checkoutStep = (
     <div className="Overview">
-      <b>Purchase confirmation</b>
+      <h4 style={{ margin: 0 }}>OVERVIEW</h4>
+      <span className="text-muted" style={{ margin: "5px 0 20px" }}>
+        Please confirm your purchase
+      </span>
       <ul>
-        <li>currency: {overview.currency} </li>
-        <li>amount: {overview.amount} </li>
-        <li>rate: {overview.rate} </li>
-        <li>bank account: {overview.account} </li>
-        <li>provider: {overview.provider} </li>
+        <li>
+          <span className="text-muted">currency:</span>{" "}
+          <b>{overview.currency}</b>{" "}
+        </li>
+        <li>
+          <span className="text-muted">amount:</span> <b>{overview.amount}</b>{" "}
+        </li>
+        <li>
+          <span className="text-muted">rate:</span> <b>{overview.rate}</b>{" "}
+        </li>
+        <li>
+          <span className="text-muted">bank account:</span>{" "}
+          <b>{overview.account}</b>{" "}
+        </li>
+        <li>
+          <span className="text-muted">provider:</span>{" "}
+          <b>{overview.provider}</b>{" "}
+        </li>
       </ul>
       <div className="footer">
         <button
@@ -308,7 +323,7 @@ const CreateRequest = () => {
             <div style={{ margin: "20px 0" }}>
               <label htmlFor="exchange">{displayExchanges}</label>
 
-              <label htmlFor="amount">
+              <label>
                 Amount:{" "}
                 <input
                   id="amount"
@@ -358,7 +373,7 @@ const CreateRequest = () => {
                 fontWeight: "bold",
               }}
             >
-              Select a currency above to see available offers...
+              Select a currency to see available offers...
             </p>
           )}
         </form>

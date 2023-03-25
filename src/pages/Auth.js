@@ -32,7 +32,7 @@ const Auth = ({ isAuthenticated }) => {
         <div style={{ marginBottom: "30px" }}>
           <i
             className="fa-solid fa-droplet fa-2xl"
-            style={{ fontSize: "59px", marginBottom: "35px" }}
+            style={{ fontSize: "59px", marginBottom: "20px" }}
           ></i>
           <h1 className="brand">{process.env.REACT_APP_NAME}</h1>
           <p className="text-muted" style={{ marginTop: "10px" }}>

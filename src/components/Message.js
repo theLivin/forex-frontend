@@ -12,7 +12,8 @@ const Message = ({ status, text }) => {
               className="fa-solid fa-thumbs-up"
               style={{ color: "green", fontSize: "30px", marginRight: "10px" }}
             ></i>
-            Your request was successfully completed.
+            COMPLETED!
+            <p>Your request was successfully completed.</p>
           </>
         );
       case "FAILED":
@@ -22,7 +23,8 @@ const Message = ({ status, text }) => {
               className="fa-solid fa-thumbs-down"
               style={{ color: "red", fontSize: "30px", marginRight: "10px" }}
             ></i>
-            {text}.
+            FAILED!
+            <p>{text}</p>
           </>
         );
       default:
@@ -31,7 +33,7 @@ const Message = ({ status, text }) => {
   };
 
   return (
-    <div style={{ fontSize: "24px" }}>
+    <div style={{ fontSize: "18px" }}>
       {<Content />}
       <div style={{ marginTop: "10px" }}>
         <Link to={routes.REQUESTS}>View all requests</Link>
