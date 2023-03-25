@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Auth.css";
 import { GoogleLogin } from "@react-oauth/google";
-import utils from "../utilities";
+import utils from "../utils";
 import routes from "../routes";
 import { Navigate } from "react-router-dom";
 

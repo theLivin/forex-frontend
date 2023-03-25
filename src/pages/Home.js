@@ -23,7 +23,6 @@ const Home = () => {
   ];
 
   const logOut = () => {
-    console.log("logout");
     googleLogout();
     localStorage.clear();
     window.location.reload();

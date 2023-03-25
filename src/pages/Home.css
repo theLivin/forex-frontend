@@ -10,7 +10,7 @@
 }
 
 .Home__topBar .brand {
-  font-size: 28px;
+  /* font-size: 28px; */
   font-weight: bold;
   text-decoration: none;
   color: initial;
@@ -18,7 +18,7 @@
 
 .Home__main {
   display: grid;
-  grid-template-columns: 0.3fr auto;
+  grid-template-columns: 0.3fr 1fr;
   height: 100%;
   height: calc(100vh - 75px);
 }
@@ -38,7 +38,7 @@
 }
 
 .Home__link {
-  font-size: 20px;
+  /* font-size: 20px; */
   text-decoration: none;
   color: initial;
 }

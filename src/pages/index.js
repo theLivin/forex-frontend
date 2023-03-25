@@ -6,4 +6,3 @@ export { default as Wallet } from "./Wallet";
 export { default as Requests } from "./Requests";
 export { default as Home } from "./Home";
 export { default as NotFound } from "./NotFound";
-export { default as Request } from "./Request";
