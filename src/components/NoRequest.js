@@ -13,8 +13,7 @@ const NoRequest = () => {
 
   return (
     <>
-      <div>you have no requests</div>
-      <br />
+      <div style={{ marginBottom: "30px" }}>Requests data not available...</div>
       {createRequestButton}
     </>
   );

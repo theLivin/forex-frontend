@@ -43,7 +43,7 @@ const BankAccounts = () => {
   }, []);
 
   const displayAccounts = (
-    <table>
+    <table style={{ marginTop: "30px" }}>
       <thead>
         <tr>
           <th>Name</th>
@@ -91,14 +91,15 @@ const BankAccounts = () => {
   };
 
   const connectAccount = (
-    <div>
+    <div style={{ width: "40%", marginTop: "50px" }}>
+      <h4 style={{ margin: "0", marginBottom: "15px" }}>ADD ACCOUNT</h4>
       <form onSubmit={handleSubmit}>
         <input
           id="name"
           type="text"
           value={newAccount.name}
           name="name"
-          placeholder="name"
+          placeholder="account name"
           onChange={handleChange}
           required
         />
@@ -119,15 +120,22 @@ const BankAccounts = () => {
             <option value="GHS">Ghana Cedi (Ghana)</option>
           )}
         </select>
-        <button type="submit">submit</button>
+        <button
+          style={{ marginTop: "20px" }}
+          className="btn-secondary"
+          type="submit"
+        >
+          Add
+        </button>
       </form>
     </div>
   );
 
   return (
     <Wrapper header={{ title: "Bank Accounts" }}>
-      {accounts.length > 0 ? displayAccounts : "no connected account"}
-      Connect Account
+      {accounts.length > 0
+        ? displayAccounts
+        : "Bank accounts data not available..."}
       {connectAccount}
     </Wrapper>
   );

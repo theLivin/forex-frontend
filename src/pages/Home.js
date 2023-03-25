@@ -33,14 +33,21 @@ const Home = () => {
       <nav className="Home__topBar">
         <div className="container nav-h">
           <Link to="/" className="brand">
-            Forex
+            <i
+              className="fa-solid fa-droplet"
+              style={{ fontSize: "inherit" }}
+            ></i>{" "}
+            {process.env.REACT_APP_NAME}
           </Link>
-          <button onClick={logOut}>Logout</button>
+          <button className="btn-danger" onClick={logOut}>
+            Logout
+          </button>
         </div>
       </nav>
 
       <div className="Home__main container">
         <div className="sideBar">
+          <h4>HOME</h4>
           <ul>
             {links.map((link, index) => (
               <li key={index}>
@@ -50,7 +57,18 @@ const Home = () => {
                     location.pathname.includes(link.path) ? "active" : ""
                   }`}
                 >
-                  <i className={link.icon}></i> {link.name}
+                  <i
+                    className={link.icon}
+                    style={{
+                      color: `${
+                        location.pathname.includes(link.path)
+                          ? "inherit"
+                          : "blue"
+                      }`,
+                      marginRight: "8px",
+                    }}
+                  ></i>{" "}
+                  {link.name}
                 </Link>
               </li>
             ))}

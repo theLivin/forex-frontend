@@ -3,10 +3,39 @@ import { Link } from "react-router-dom";
 import routes from "../routes";
 
 const Message = ({ status, text }) => {
+  const Content = () => {
+    switch (status) {
+      case "COMPLETED":
+        return (
+          <>
+            <i
+              className="fa-solid fa-thumbs-up"
+              style={{ color: "green", fontSize: "30px", marginRight: "10px" }}
+            ></i>
+            Your request was successfully completed.
+          </>
+        );
+      case "FAILED":
+        return (
+          <>
+            <i
+              className="fa-solid fa-thumbs-down"
+              style={{ color: "red", fontSize: "30px", marginRight: "10px" }}
+            ></i>
+            {text}.
+          </>
+        );
+      default:
+        break;
+    }
+  };
+
   return (
-    <div>
-      Message: {status} {text}
-      <Link to={routes.REQUESTS}>View all requests</Link>
+    <div style={{ fontSize: "24px" }}>
+      {<Content />}
+      <div style={{ marginTop: "10px" }}>
+        <Link to={routes.REQUESTS}>View all requests</Link>
+      </div>
     </div>
   );
 };

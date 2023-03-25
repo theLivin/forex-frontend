@@ -37,7 +37,7 @@ const Requests = () => {
   );
 
   const displayRequests = (
-    <table>
+    <table style={{ marginTop: "30px" }}>
       <thead>
         <tr>
           <th>Source Currency</th>

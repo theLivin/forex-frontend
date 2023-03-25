@@ -5,6 +5,7 @@ import axios from "axios";
 import utils from "../utils";
 import routes from "../routes";
 import Message from "../components/Message";
+import "./CreateRequest.css";
 
 const CreateRequest = () => {
   const [user, setUser] = useState({});
@@ -123,11 +124,12 @@ const CreateRequest = () => {
       ...prev,
       [event.target.name]: event.target.value,
     }));
-    if (event.target.name == "bankAccountId") {
-      accounts.map((account) => {
-        if (account.id == event.target.value)
-          setSelectedAccount({ ...account });
-      });
+
+    if (event.target.name === "bankAccountId") {
+      const found = accounts.filter(
+        (account) => account.id == event.target.value
+      );
+      setSelectedAccount({ ...found[0] });
     }
   };
 
@@ -147,8 +149,9 @@ const CreateRequest = () => {
   const onProceed = (event) => {
     event.preventDefault();
 
-    if (newRequest.exchangeId.length == 0 || newRequest.amount == 0) return;
+    if (newRequest.exchangeId.length === 0 || newRequest.amount === 0) return;
 
+    console.log(selectedAccount);
     setNewRequest((prev) => ({
       ...prev,
       walletId: wallet.id,
@@ -188,27 +191,44 @@ const CreateRequest = () => {
   };
 
   const checkoutStep = (
-    <div>
-      amount {overview.amount}
-      bank account {overview.account}
-      target currency {overview.currency}
-      rate {overview.rate}
-      provider {overview.provider}
-      <button onClick={() => setStep((prev) => prev - 1)}>back</button>
-      <button onClick={handleSubmit}>submit</button>
+    <div className="Overview">
+      <b>Purchase confirmation</b>
+      <ul>
+        <li>currency: {overview.currency} </li>
+        <li>amount: {overview.amount} </li>
+        <li>rate: {overview.rate} </li>
+        <li>bank account: {overview.account} </li>
+        <li>provider: {overview.provider} </li>
+      </ul>
+      <div className="footer">
+        <button
+          onClick={() => setStep((prev) => prev - 1)}
+          style={{ marginRight: "20px" }}
+          className="btn-outline"
+        >
+          <i className="fa-solid fa-pen"></i> Edit
+        </button>
+        <button onClick={handleSubmit}>Confirm and submit</button>
+      </div>
     </div>
   );
 
   const displayExchanges =
     exchanges.length > 0 ? (
-      <div>
-        offers for ${newRequest.targetCurrency}
+      <div style={{ marginBottom: "30px" }}>
+        <p
+          style={{
+            color: "blue",
+            margin: "20px 0",
+          }}
+        >
+          Available offers for ${newRequest.targetCurrency}
+        </p>
         <table>
           <thead>
             <tr>
               <th>Provider</th>
               <th>Rate</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -218,13 +238,22 @@ const CreateRequest = () => {
                 onClick={() => onSelectExchange(exchange)}
                 value={exchange.id}
                 className={`cursor-pointer ${
-                  newRequest.exchangeId == exchange.id ? "selected" : ""
+                  newRequest.exchangeId === exchange.id ? "selected" : ""
                 }`}
               >
                 <td>{exchange.provider.name}</td>
-                <td>{exchange.rate}</td>
-                <td>
-                  {newRequest.exchangeId == exchange.id ? <i>selected</i> : ""}
+                <td
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  {exchange.rate}
+                  {newRequest.exchangeId === exchange.id ? (
+                    <i
+                      className="fa-solid fa-circle-check"
+                      style={{ color: "white" }}
+                    ></i>
+                  ) : (
+                    ""
+                  )}
                 </td>
               </tr>
             ))}
@@ -232,15 +261,25 @@ const CreateRequest = () => {
         </table>
       </div>
     ) : (
-      `no offer for ${newRequest.targetCurrency}`
+      <p style={{ color: "red", margin: "20px 0", fontWeight: "bold" }}>
+        No offers data not available for {newRequest.targetCurrency}..
+      </p>
     );
 
   const createRequest =
     accounts.length > 0 ? (
-      <div>
+      <>
+        <p className="text-muted" style={{ marginBottom: "50px" }}>
+          Fill in the required fields to create a new request. Be sure to
+          provide accurate information to ensure timely and efficient processing
+          of your request.
+        </p>
         <form>
           <label htmlFor="targetCurrency">
-            Target Currency:
+            Currency{" "}
+            <span className="text-muted">
+              (what currency do you want to purchase?)
+            </span>
             <select
               id="targetCurrency"
               name="targetCurrency"
@@ -264,55 +303,66 @@ const CreateRequest = () => {
               )}
             </select>
           </label>
-          <br />
 
-          <label htmlFor="exchange">
-            {newRequest.targetCurrency.length == 0
-              ? "select currency to view offers"
-              : displayExchanges}
-          </label>
-          <br />
+          {newRequest.targetCurrency.length > 0 ? (
+            <div style={{ margin: "20px 0" }}>
+              <label htmlFor="exchange">{displayExchanges}</label>
 
-          <label htmlFor="amount">
-            Amount:{" "}
-            <input
-              id="amount"
-              type="number"
-              value={newRequest.amount}
-              name="amount"
-              onChange={handleChange}
-              step=".01"
-              min={0}
-            />
-          </label>
-          <br />
+              <label htmlFor="amount">
+                Amount:{" "}
+                <input
+                  id="amount"
+                  type="number"
+                  value={newRequest.amount}
+                  name="amount"
+                  onChange={handleChange}
+                  step=".01"
+                  min={0}
+                />
+              </label>
 
-          <label htmlFor="bankAccountId">
-            Bank Account:
-            <select
-              id="bankAccountId"
-              name="bankAccountId"
-              value={newRequest.bankAccountId}
-              onChange={handleChange}
-              required
-            >
-              <option disabled value="">
-                -- select bank account --{" "}
-              </option>
-
-              {accounts.length > 0
-                ? accounts.map((account) => (
-                    <option value={account.id} key={account.id}>
-                      {`${account.name} (${account.currency.code})`}
+              <div style={{ margin: "20px 0 40px" }}>
+                <label htmlFor="bankAccountId">
+                  Bank Account:
+                  <select
+                    id="bankAccountId"
+                    name="bankAccountId"
+                    value={newRequest.bankAccountId}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option disabled value="">
+                      -- select bank account --{" "}
                     </option>
-                  ))
-                : ""}
-            </select>
-          </label>
-          <br />
-          <button onClick={onProceed}>proceed</button>
+
+                    {accounts.length > 0
+                      ? accounts.map((account) => (
+                          <option value={account.id} key={account.id}>
+                            {`${account.name} (${account.currency.code})`}
+                          </option>
+                        ))
+                      : ""}
+                  </select>
+                </label>
+              </div>
+
+              <button className="btn-secondary" onClick={onProceed}>
+                Proceed
+              </button>
+            </div>
+          ) : (
+            <p
+              style={{
+                color: "red",
+                margin: "20px 0",
+                fontWeight: "bold",
+              }}
+            >
+              Select a currency above to see available offers...
+            </p>
+          )}
         </form>
-      </div>
+      </>
     ) : (
       <div>
         You currently have no bank account to trade into. Visit your{" "}

@@ -7,7 +7,7 @@ const Wrapper = ({ header, children }) => {
       <nav className="nav-h">
         <div>
           <div className="Wrapper-headerNav">{header.nav}</div>
-          <h1>{header.title}</h1>
+          <h1 style={{ marginBottom: "10px" }}>{header.title}</h1>
           <p>{header.subtitle}</p>
         </div>
         <div>{header.action}</div>

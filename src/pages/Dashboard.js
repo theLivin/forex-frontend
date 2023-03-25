@@ -3,6 +3,7 @@ import Wrapper from "./Wrapper";
 import utils from "../utils";
 import axios from "axios";
 import NoRequest from "../components/NoRequest";
+import Card from "../components/Card";
 
 const Dashboard = () => {
   const [user, setUser] = useState({ name: "", email: "" });
@@ -43,21 +44,29 @@ const Dashboard = () => {
   }, [requests]);
 
   const displayRequests = (
-    <>
-      <div>ALL: {requests.length}</div>
-      <div>COMPLETED: {count["COMPLETED"] || 0}</div>
-      <div>PENDING: {count["PENDING"] || 0}</div>
-      <div>FAILED: {count["FAILED"] || 0}</div>
-    </>
+    <div
+      style={{
+        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gap: "30px",
+      }}
+    >
+      <Card title="ALL" body={requests.length} />
+      <Card title="COMPLETED" body={count["COMPLETED"] || 0} />
+      <Card title="PENDING" body={count["PENDING"] || 0} />
+      <Card title="FAILED" body={count["FAILED"] || 0} />
+    </div>
   );
 
   return (
     <Wrapper
       header={{
-        title: `Hello, ${user.name}`,
+        title: `Hello, ${user.name} 👋`,
         subtitle: user.email,
       }}
     >
+      <h4>REQUESTS OVERVIEW</h4>
       {requests.length > 0 ? displayRequests : <NoRequest />}
     </Wrapper>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import Wrapper from "./Wrapper";
 import axios from "axios";
 import utils from "../utils";
+import Card from "../components/Card";
 
 const Wallet = () => {
   const [wallet, setWallet] = useState({});
@@ -27,12 +28,12 @@ const Wallet = () => {
   }, []);
 
   const displayBalance = (
-    <div>
-      Balance:{" "}
-      {`${wallet.currency ? wallet.currency.code : "?"} ${
-        wallet.balance ? wallet.balance.toFixed(2) : "??"
+    <Card
+      title="BALANCE"
+      body={`${wallet.currency ? wallet.currency.code : "?"} ${
+        wallet.balance ? wallet.balance.toFixed(2) : "0.00"
       }`}
-    </div>
+    />
   );
 
   const handleChange = (event) => {
@@ -60,8 +61,8 @@ const Wallet = () => {
   };
 
   const depositForm = (
-    <div>
-      Deposit:{" "}
+    <div style={{ width: "50%" }}>
+      <h4 style={{ margin: "0", marginBottom: "15px" }}>DEPOSIT</h4>
       <form onSubmit={handleSubmit}>
         <input
           id="amount"
@@ -72,16 +73,29 @@ const Wallet = () => {
           step=".01"
           min={0}
         />
-        <button type="submit">submit</button>
+        <button
+          style={{ marginTop: "20px" }}
+          className="btn-secondary"
+          type="submit"
+        >
+          Deposit
+        </button>
       </form>
     </div>
   );
 
   return (
     <Wrapper header={{ title: "Wallet" }}>
-      {wallet.id ? displayBalance : "no data available"}
-
-      {depositForm}
+      <div
+        style={{
+          width: "100%",
+          display: "grid",
+          gridTemplateColumns: "0.8fr auto",
+        }}
+      >
+        {depositForm}
+        {wallet.id ? displayBalance : "No data available..."}
+      </div>
     </Wrapper>
   );
 };

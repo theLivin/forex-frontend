@@ -6,11 +6,10 @@
 .Home__topBar {
   border-bottom: 1px solid #e7e7e7;
   padding: 24px 16px;
-  height: 20px;
 }
 
 .Home__topBar .brand {
-  /* font-size: 28px; */
+  font-size: 24px;
   font-weight: bold;
   text-decoration: none;
   color: initial;
@@ -38,7 +37,7 @@
 }
 
 .Home__link {
-  /* font-size: 20px; */
+  font-size: 22px;
   text-decoration: none;
   color: initial;
 }
@@ -48,7 +47,7 @@
 }
 
 .Home__link:hover {
-  text-decoration: underline;
+  color: gray;
 }
 
 .Home__main .sideBar li {
@@ -58,5 +57,11 @@
 }
 
 .Home__link.active {
-  text-decoration: underline;
+  color: #000;
+  font-weight: bold;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }

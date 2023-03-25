@@ -29,8 +29,19 @@ const Auth = ({ isAuthenticated }) => {
   return !isAuthenticated ? (
     <div className="Auth">
       <header className="Auth-header">
-        <h1 className="brand">Forex</h1>
-        <h3>Log in to your account</h3>
+        <div style={{ marginBottom: "30px" }}>
+          <i
+            className="fa-solid fa-droplet fa-2xl"
+            style={{ fontSize: "59px", marginBottom: "35px" }}
+          ></i>
+          <h1 className="brand">{process.env.REACT_APP_NAME}</h1>
+          <p className="text-muted" style={{ marginTop: "10px" }}>
+            Trade with confidence, profit with ease - with{" "}
+            {process.env.REACT_APP_NAME}!
+          </p>
+        </div>
+
+        <h3>continue with google</h3>
 
         <div className="GoogleLogin">
           <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
