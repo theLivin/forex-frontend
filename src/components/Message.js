@@ -13,7 +13,7 @@ const Message = ({ status, text }) => {
               style={{ color: "green", fontSize: "30px", marginRight: "10px" }}
             ></i>
             COMPLETED!
-            <p>Your request was successfully completed.</p>
+            <p>Your transaction was successfully completed.</p>
           </>
         );
       case "FAILED":
@@ -33,10 +33,10 @@ const Message = ({ status, text }) => {
   };
 
   return (
-    <div style={{ fontSize: "18px" }}>
+    <div>
       {<Content />}
       <div style={{ marginTop: "10px" }}>
-        <Link to={routes.REQUESTS}>View all requests</Link>
+        <Link to={routes.WALLET}>Go to wallet</Link>
       </div>
     </div>
   );

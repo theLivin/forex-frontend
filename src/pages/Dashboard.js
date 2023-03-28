@@ -66,7 +66,7 @@ const Dashboard = () => {
         subtitle: user.email,
       }}
     >
-      <h4>REQUESTS OVERVIEW</h4>
+      <h4>TRANSACTIONS OVERVIEW</h4>
       {requests.length > 0 ? displayRequests : <NoRequest />}
     </Wrapper>
   );

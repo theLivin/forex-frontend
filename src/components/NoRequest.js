@@ -6,14 +6,12 @@ const NoRequest = () => {
   const navigate = useNavigate();
 
   const createRequestButton = (
-    <button onClick={() => navigate(routes.CREATE_REQUEST)}>
-      Create request
-    </button>
+    <button onClick={() => navigate(routes.CREATE_REQUEST)}>Buy FX</button>
   );
 
   return (
     <>
-      <div style={{ marginBottom: "30px" }}>Requests data not available...</div>
+      <div style={{ marginBottom: "30px" }}>No data available...</div>
       {createRequestButton}
     </>
   );

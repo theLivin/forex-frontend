@@ -10,9 +10,9 @@ const Home = () => {
   const links = [
     { name: "Dashboard", path: routes.DASHBOARD, icon: "fa-solid fa-house" },
     {
-      name: "Requests",
+      name: "Transactions",
       path: routes.REQUESTS,
-      icon: "fa-solid fa-scale-balanced",
+      icon: "fa-solid fa-right-left",
     },
     { name: "Wallet", path: routes.WALLET, icon: "fa-solid fa-wallet" },
     {
@@ -53,7 +53,7 @@ const Home = () => {
               <li key={index}>
                 <Link
                   to={link.path}
-                  className={`Home__link  ${
+                  className={`Home__link h-font  ${
                     location.pathname.includes(link.path) ? "active" : ""
                   }`}
                 >

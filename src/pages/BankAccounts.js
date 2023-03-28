@@ -6,7 +6,7 @@ import utils from "../utils";
 const BankAccounts = () => {
   const [accounts, setAccounts] = useState([]);
   const [currencies, setCurrencies] = useState([]);
-  const [newAccount, setNewAccount] = useState({ name: "", currency: "GHS" });
+  const [newAccount, setNewAccount] = useState({ name: "", currency: "" });
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -79,6 +79,7 @@ const BankAccounts = () => {
       .then((res) => {
         const account = res.data.data;
         setAccounts((prev) => [account, ...prev]);
+        setNewAccount({ name: "", currency: "" });
       })
       .catch((err) => console.log(err));
   };
@@ -109,7 +110,12 @@ const BankAccounts = () => {
           name="currency"
           value={newAccount.currency}
           onChange={handleChange}
+          required
         >
+          <option disabled value="">
+            {" "}
+            -- select a currency --{" "}
+          </option>
           {currencies.length > 0 ? (
             currencies.map((currency) => (
               <option value={currency.code} key={currency.code}>
@@ -133,9 +139,7 @@ const BankAccounts = () => {
 
   return (
     <Wrapper header={{ title: "Bank Accounts" }}>
-      {accounts.length > 0
-        ? displayAccounts
-        : "Bank accounts data not available..."}
+      {accounts.length > 0 ? displayAccounts : "No data available..."}
       {connectAccount}
     </Wrapper>
   );

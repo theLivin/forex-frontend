@@ -24,16 +24,13 @@ const Requests = () => {
       })
       .then((res) => {
         const requests = res.data.data.content;
-        requests.reverse();
         setRequests([...requests]);
       })
       .catch((err) => console.log(err));
   }, []);
 
   const button = (
-    <button onClick={() => navigate(routes.CREATE_REQUEST)}>
-      Create request
-    </button>
+    <button onClick={() => navigate(routes.CREATE_REQUEST)}>Buy FX</button>
   );
 
   const displayRequests = (
@@ -70,7 +67,7 @@ const Requests = () => {
   return (
     <Wrapper
       header={{
-        title: "Requests",
+        title: "Transactions",
         action: button,
       }}
     >

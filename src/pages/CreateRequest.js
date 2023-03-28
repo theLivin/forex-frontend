@@ -236,7 +236,7 @@ const CreateRequest = () => {
             margin: "20px 0",
           }}
         >
-          Available offers for ${newRequest.targetCurrency}
+          Available offers for {newRequest.targetCurrency}
         </p>
         <table>
           <thead>
@@ -276,7 +276,7 @@ const CreateRequest = () => {
       </div>
     ) : (
       <p style={{ color: "red", margin: "20px 0", fontWeight: "bold" }}>
-        No offers data not available for {newRequest.targetCurrency}..
+        No offers available for {newRequest.targetCurrency}..
       </p>
     );
 
@@ -284,9 +284,9 @@ const CreateRequest = () => {
     accounts.length > 0 ? (
       <>
         <p className="text-muted" style={{ marginBottom: "50px" }}>
-          Fill in the required fields to create a new request. Be sure to
+          Fill in the required fields to create a new transaction. Be sure to
           provide accurate information to ensure timely and efficient processing
-          of your request.
+          of your transaction.
         </p>
         <form>
           <label htmlFor="targetCurrency">
@@ -389,14 +389,14 @@ const CreateRequest = () => {
     <Wrapper
       header={{
         nav: backButton,
-        title: "Create Request",
+        title: "Create Transaction",
       }}
     >
-      {step == 0 ? (
+      {step === 0 ? (
         createRequest
-      ) : step == 1 ? (
+      ) : step === 1 ? (
         checkoutStep
-      ) : step == 2 ? (
+      ) : step === 2 ? (
         <Message status={response.status} text={response.message} />
       ) : (
         "This page isn't working"

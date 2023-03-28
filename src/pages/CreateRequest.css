@@ -1,5 +1,4 @@
 .Overview {
-  font-size: 18px;
   margin: 0;
   padding: 0;
   display: flex;
@@ -8,4 +7,8 @@
 
 .Overview > div {
   margin-top: 40px;
+}
+
+.Overview li {
+  list-style-type: none;
 }

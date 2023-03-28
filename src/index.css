@@ -10,7 +10,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h-font {
   font-family: "Titillium Web", sans-serif;
 }
 
@@ -72,13 +73,6 @@ table th {
   text-align: left;
   background-color: #000;
   color: white;
-}
-
-tr.selected,
-tr.selected:hover {
-  color: white;
-  background-color: blue;
-  font-weight: bold;
 }
 
 .cursor-pointer {
@@ -149,4 +143,11 @@ button:hover {
 .btn-outline:hover {
   color: black;
   opacity: 0.5;
+}
+
+tr.selected,
+tr.selected:hover {
+  color: white;
+  background-color: blue !important;
+  font-weight: bold;
 }
