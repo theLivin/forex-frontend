@@ -36,7 +36,7 @@ const Message = ({ status, text }) => {
     <div>
       {<Content />}
       <div style={{ marginTop: "10px" }}>
-        <Link to={routes.WALLET}>Go to wallet</Link>
+        <Link to={routes.REQUESTS}>View transactions</Link>
       </div>
     </div>
   );
